@@ -52,3 +52,9 @@
 - `prompts/master-prompt.txt`
 - `make-com/scenario-guide.md`
 - `voice-profile/satya-voice.md`
+
+## [2.0.1] — 2026-05-27
+
+### Documentation
+
+- Added `docs/complete-project-guide.md` — full end-to-end plain English explanation of the entire project including brain/body/memory analogy, daily flow, voice analysis, infrastructure build steps, costs, maintenance, and glossary
