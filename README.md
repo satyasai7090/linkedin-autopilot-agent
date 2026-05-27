@@ -1,155 +1,134 @@
 # LinkedIn Autopilot Agent 🤖
 
-> A fully automated LinkedIn posting agent built on Make.com + Claude API — posting daily AI news reframes and personal observations in my voice, every morning, without manual effort.
+> A fully automated LinkedIn posting agent built on n8n + Claude API — posting daily in my voice, driven by real AI news and personal observations.
+
+**Status: LIVE ✅ — Active since May 27, 2026**
 
 ---
 
-## What This Is
+## What This Does
 
-A personal LinkedIn automation system that:
+Every morning at 6 AM IST, this agent automatically:
 
-- Scans 10+ global AI and technical writing news sources every morning
-- Identifies the most viral or impactful story from the previous day
-- Writes a post in my exact voice and style using Claude API
-- Sends me a WhatsApp + email preview before posting
-- Posts automatically to my LinkedIn personal profile at 8:30 AM
-- Logs every post to Google Sheets for tracking
-
-**Built by:** Satya Sai Pasupuleti — Senior Technical Writer, Redwood Software  
-**Stack:** Make.com · Claude API (Anthropic) · LinkedIn OAuth · NewsAPI · Gmail · Twilio  
-**Status:** 🔨 In Progress
+1. Scans global AI news from the previous 24 hours (NewsAPI + full article scraping)
+2. Picks the most trending, impactful story
+3. Writes a LinkedIn post in my voice using Claude API
+4. Sends me a full preview via WhatsApp before posting
+5. Posts automatically to my LinkedIn personal profile at 8:30 AM
+6. Logs every post to Google Sheets
 
 ---
 
 ## My Positioning
 
-> A technical writer without AI is good.  
+> A technical writer without AI is good.
 > A technical writer with AI is a different category entirely.
 
-This agent doesn't just automate posting — it automates *thinking out loud* about how technical writers can ride the AI wave instead of being swept by it.
-
----
-
-## Repo Structure
-
-```
-linkedin-autopilot-agent/
-│
-├── README.md                        ← You are here
-├── changelog.md                     ← Version history and updates
-│
-├── docs/
-│   ├── blueprint.md                 ← Full system architecture and build guide
-│   └── make-com-setup.md            ← Step by step Make.com build guide
-│
-├── prompts/
-│   └── master-prompt.txt            ← Claude API master prompt (copy-paste ready)
-│
-├── make-com/
-│   └── scenario-guide.md            ← Module by module Make.com scenario guide
-│
-└── voice-profile/
-    └── satya-voice.md               ← Writing style, rules, and voice samples
-```
-
----
-
-## The Post Pattern (Locked)
-
-Every post follows this 4-step formula derived from my highest performing post (13,000+ impressions):
-
-```
-Step 1 — Opening Provocation
-A trending fear, bold claim, or unexpected observation.
-
-Step 2 — Reframe
-Flip the assumption. Show the unexpected angle.
-
-Step 3 — Three Sharp Lines
-Build the argument in exactly three punchy lines.
-
-Step 4 — Quiet Closing Punch
-One slow-burn truth. The kind of line people screenshot.
-```
-
----
-
-## Two Post Types
-
-| Type | Trigger | Tone |
-|------|---------|------|
-| **Type A — AI News Reframe** | Real AI news story with fear/disruption angle | Field notes from someone already there |
-| **Type B — Personal Observation** | Real moment from daily work at Redwood | Honest, specific, like a colleague sharing over coffee |
+I'm a Senior Technical Writer at an AI-first SaaS company. Every post connects AI news to what it means for technical writers, SaaS documentation professionals, and people who want to future-proof their careers.
 
 ---
 
 ## Tech Stack
 
 | Layer | Tool | Cost |
-|-------|------|------|
-| Automation | Make.com | ~$10/month |
-| AI Writer | Claude API (Anthropic) | ~$5–10/month |
+|---|---|---|
+| Automation | n8n (self-hosted on Render.com) | Free |
+| Database | Supabase (PostgreSQL) | Free |
+| Server uptime | UptimeRobot | Free |
+| AI Writer | Claude API (Anthropic) | ~$1-5/month |
+| News Source | NewsAPI | Free |
 | Publisher | LinkedIn OAuth | Free |
-| News Source | NewsAPI + Web Search | Free–$15/month |
-| Voice Memory | Google Docs | Free |
-| Post Log | Google Sheets | Free |
-| Email Preview | Gmail via Make.com | Free |
-| WhatsApp Preview | Twilio / WATI | ~$5/month |
+| Preview | Twilio WhatsApp Sandbox | Free (trial) |
+| Logger | Google Sheets | Free |
 
-**Total: ~$20–40/month**
+**Total monthly cost: ~$1-5**
 
 ---
 
-## News Sources Monitored
+## Architecture
 
-**Tier 1 — Mainstream AI:**
-- Hacker News
-- TechCrunch
-- ArXiv
-- Product Hunt
-- Perplexity AI News
-
-**Tier 2 — Technical Writing Communities:**
-- Write the Docs
-- Reddit r/technicalwriting
-- Reddit r/artificial
-- Dev.to
-- Medium (Towards Data Science)
-- GitHub Discussions
-- LinkedIn Groups
+```
+6:00 AM  →  Scheduler triggers
+6:01 AM  →  NewsAPI fetches top AI stories
+6:02 AM  →  Full article scraped for context
+6:03 AM  →  Claude writes post in Satya's voice
+6:04 AM  →  WhatsApp preview sent
+8:30 AM  →  Post goes live on LinkedIn
+8:31 AM  →  Row logged to Google Sheets
+```
 
 ---
 
-## Content Rules (Never Broken)
+## Project Structure
 
-- ✅ Always show human + AI combination as the power
-- ✅ Always stay neutral — never take sides in the AI debate
-- ✅ Always sound like field notes, not a TED talk
-- ❌ Never say AI replaces technical writers
-- ❌ Never say technical writers don't need AI
-- ❌ No politics, religion, or controversy
-- ❌ No exclamation marks. Ever.
-- ❌ No jargon: game-changer, revolutionary, disruptive
-
----
-
-## Roadmap
-
-- [x] System design and architecture
-- [x] Voice profile analysis from real posts
-- [x] Claude master prompt finalized
-- [ ] Make.com account setup
-- [ ] NewsAPI integration
-- [ ] Claude API integration
-- [ ] LinkedIn OAuth connection
-- [ ] Gmail preview setup
-- [ ] WhatsApp preview setup (Twilio)
-- [ ] Full test run
-- [ ] Go live
+```
+linkedin-autopilot-agent/
+├── README.md
+├── changelog.md
+├── docs/
+│   ├── blueprint.md
+│   ├── master-prompt.md
+│   └── architecture-explained.md
+├── n8n/
+│   ├── workflow-overview.md
+│   └── setup-guide.md
+├── prompts/
+│   └── master-prompt.txt
+├── setup/
+│   ├── render-env-variables.md
+│   └── credentials-checklist.md
+└── voice-profile/
+    └── satya-voice.md
+```
 
 ---
 
-## Connect
+## The 11 Workflow Nodes
 
-- LinkedIn: [Satya Sai Pasupuleti](https://www.linkedin.com/in/satya-sai-pasupuleti)
-- GitHub: [@satyasai7090](https://github.com/satyasai7090)
+| # | Node | Type | Purpose |
+|---|---|---|---|
+| 1 | Schedule Trigger | Trigger | Fires daily at 6 AM IST |
+| 2 | Fetch AI News | HTTP Request | Calls NewsAPI for top stories |
+| 3 | Extract Top Story | Code (JS) | Picks most popular article |
+| 4 | Fetch Full Article | HTTP Request | Scrapes full article text |
+| 5 | Clean HTML | Code (JS) | Extracts clean text for Claude |
+| 6 | Write Post | HTTP Request | Calls Claude API |
+| 7 | Extract Post Text | Code (JS) | Pulls clean post from response |
+| 8 | WhatsApp Preview | HTTP Request | Sends preview via Twilio |
+| 9 | Wait | Wait | Pauses 2.5 hours |
+| 10 | Post to LinkedIn | LinkedIn | Posts to personal profile |
+| 11 | Log to Sheets | Google Sheets | Logs post details |
+
+---
+
+## Post Pattern
+
+Derived from highest performing post (13,000+ impressions):
+
+```
+Step 1 — Opening provocation
+Step 2 — Reframe the assumption
+Step 3 — Three sharp lines
+Step 4 — Quiet closing punch
+Step 5 — 4-6 hashtags
+```
+
+---
+
+## Maintenance
+
+| Frequency | Task |
+|---|---|
+| Daily | Check WhatsApp preview |
+| Weekly | Reply to LinkedIn comments manually |
+| Monthly | Review performance, update voice samples |
+| Every 60 days | Refresh LinkedIn + Google OAuth tokens |
+
+---
+
+## Author
+
+**Satya Sai Pasupuleti**
+Senior Technical Writer | Redwood Software
+Hyderabad, India
+github.com/satyasai7090
