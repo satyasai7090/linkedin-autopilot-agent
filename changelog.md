@@ -1,7 +1,23 @@
 # Changelog
 
 ---
+## v1.1.0 — May 29, 2026
 
+### Fixed
+- NewsAPI date filter added — fetches fresh news daily
+- ScraperAPI integrated to bypass Cloudflare 403 blocks
+- Twilio WhatsApp sandbox reactivated
+
+### Updated
+- Master prompt rewritten — short, punchy, Satya's voice
+- Post structure: Hook → News → Take → Close → Question → Hashtags → CTA
+- Instagram CTA added to every post
+- Wait node re-enabled for WhatsApp preview
+
+### Added
+- GENERIC_TIMEZONE = Asia/Kolkata
+- ScraperAPI credentials added
+  
 ## [2.0.0] — 2026-05-27
 
 ### Major: System Gone Live
